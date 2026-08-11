@@ -19,8 +19,7 @@ function TechTag({ label, index }) {
     <span
       className={`inline-block px-2.5 py-1 rounded-lg text-xs font-medium border ${
         tagColors[index % tagColors.length]
-      }`}
-    >
+      }`}>
       {label}
     </span>
   );
@@ -37,10 +36,7 @@ const cardVariants = {
 
 export default function Projects() {
   return (
-    <SectionWrapper
-      id="projects"
-      className="py-24 px-4 sm:px-6 max-w-6xl mx-auto"
-    >
+    <SectionWrapper id="projects" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="text-center mb-16">
         <p className="section-subheading">Portfolio</p>
@@ -58,41 +54,85 @@ export default function Projects() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            whileHover={{ y: -6 }}
-            transition={{ duration: 0.3 }}
-            className="group glass-card overflow-hidden flex flex-col"
-          >
-            {/* Gradient header */}
+            className="group"
+            style={{ perspective: "1200px" }}>
+            {/* Flip container */}
             <div
-              className={`h-2 w-full bg-gradient-to-r ${project.color}`}
-            />
+              className="relative w-full h-full"
+              style={{
+                transformStyle: "preserve-3d",
+                transition: "transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1)",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.transform = "rotateY(180deg)")}
+              onMouseLeave={(e) => (e.currentTarget.style.transform = "rotateY(0deg)")}>
+              {/* ── FRONT FACE ── */}
+              <div
+                className="glass-card overflow-hidden flex flex-col w-full h-full"
+                style={{ backfaceVisibility: "hidden" }}>
+                {/* Gradient header */}
+                <div className={`h-2 w-full bg-gradient-to-r ${project.color}`} />
 
-            <div className="p-6 sm:p-8 flex flex-col flex-1">
-              {/* Meta */}
-              <div className="flex items-start justify-between gap-4 mb-4">
-                <div>
-                  <span className="inline-block px-2.5 py-1 mb-2 rounded-full bg-slate-100 dark:bg-dark-600 text-xs text-slate-500 dark:text-slate-400 font-medium">
-                    {project.type}
-                  </span>
-                  <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white group-hover:text-brand-500 dark:group-hover:text-brand-400 transition-colors duration-200">
-                    {project.name}
-                  </h3>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 flex-shrink-0">
-                  <Calendar size={12} />
-                  <span>{project.duration}</span>
+                <div className="p-6 sm:p-8 flex flex-col flex-1">
+                  {/* Meta */}
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <div>
+                      <span className="inline-block px-2.5 py-1 mb-2 rounded-full bg-slate-100 dark:bg-dark-600 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                        {project.type}
+                      </span>
+                      <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white transition-colors duration-200">
+                        {project.name}
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 flex-shrink-0">
+                      <Calendar size={12} />
+                      <span>{project.duration}</span>
+                    </div>
+                  </div>
+
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1 mb-5">
+                    {project.description}
+                  </p>
+
+                  {/* Stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((tech, idx) => (
+                      <TechTag key={tech} label={tech} index={idx} />
+                    ))}
+                  </div>
+
+                  {/* Flip hint */}
+                  <p className="mt-4 text-xs text-slate-400 dark:text-slate-500 flex items-center gap-1 select-none">
+                    <span>↔</span> Hover to see preview
+                  </p>
                 </div>
               </div>
 
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1 mb-5">
-                {project.description}
-              </p>
+              {/* ── BACK FACE ── */}
+              <div
+                className="absolute inset-0 glass-card overflow-hidden flex flex-col"
+                style={{
+                  backfaceVisibility: "hidden",
+                  transform: "rotateY(180deg)",
+                }}>
+                {/* Gradient header */}
+                <div className={`h-2 w-full flex-shrink-0 bg-gradient-to-r ${project.color}`} />
 
-              {/* Stack */}
-              <div className="flex flex-wrap gap-2">
-                {project.stack.map((tech, idx) => (
-                  <TechTag key={tech} label={tech} index={idx} />
-                ))}
+                {/* Preview image fills the remaining space */}
+                <div className="relative flex-1 overflow-hidden">
+                  <img
+                    src={`${project.preview}`}
+                    alt={`${project.name} preview`}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                  {/* Overlay with name */}
+                  <div className="absolute bottom-0 inset-x-0 px-5 py-3 bg-gradient-to-t from-black/70 to-transparent">
+                    <p className="font-display font-bold text-white text-lg leading-tight">
+                      {project.name}
+                    </p>
+                    <p className="text-xs text-white/70 mt-0.5">{project.type}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -105,8 +145,7 @@ export default function Projects() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="glass-card p-6 sm:p-8"
-      >
+        className="glass-card p-6 sm:p-8">
         <h3 className="font-display font-semibold text-lg text-slate-900 dark:text-white mb-6 flex items-center gap-2">
           <span className="w-1.5 h-5 bg-gradient-to-b from-brand-500 to-accent-500 rounded-full inline-block" />
           Other Notable Projects
@@ -120,8 +159,7 @@ export default function Projects() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
               whileHover={{ scale: 1.02 }}
-              className="flex items-center justify-between gap-3 p-4 rounded-xl bg-slate-50 dark:bg-dark-600/50 border border-slate-200/50 dark:border-white/5 cursor-default"
-            >
+              className="flex items-center justify-between gap-3 p-4 rounded-xl bg-slate-50 dark:bg-dark-600/50 border border-slate-200/50 dark:border-white/5 cursor-default">
               <div>
                 <p className="font-medium text-sm text-slate-800 dark:text-slate-100">
                   {proj.name}

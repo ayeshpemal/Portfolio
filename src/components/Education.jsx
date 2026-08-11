@@ -59,7 +59,7 @@ export default function Education() {
                   transition={{ duration: 0.5, delay: 0.3, type: "spring" }}
                   className="self-start sm:self-center flex-shrink-0"
                 >
-                  <div className="flex flex-col items-center px-6 py-4 rounded-2xl bg-gradient-to-br from-brand-500/10 to-accent-500/10 border border-brand-500/20">
+                  {/* <div className="flex flex-col items-center px-6 py-4 rounded-2xl bg-gradient-to-br from-brand-500/10 to-accent-500/10 border border-brand-500/20">
                     <div className="flex items-center gap-1 mb-1">
                       <Star size={14} className="text-amber-400 fill-amber-400" />
                       <Star size={14} className="text-amber-400 fill-amber-400" />
@@ -71,7 +71,7 @@ export default function Education() {
                     <span className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5">
                       GPA
                     </span>
-                  </div>
+                  </div> */}
                 </motion.div>
               </div>
 
@@ -79,7 +79,7 @@ export default function Education() {
               <div className="mt-6 pt-6 border-t border-slate-200/50 dark:border-white/5">
                 <p className="text-sm text-slate-500 dark:text-slate-400 flex items-center gap-2">
                   <span className="inline-block w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
-                  Graduated with First Class Honours — Top of cohort performance
+                  Graduated with First Class
                 </p>
               </div>
             </div>

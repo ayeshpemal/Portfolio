@@ -41,7 +41,7 @@
     @apply text-brand-500 dark:text-brand-400 font-semibold text-sm uppercase tracking-widest mb-2;
   }
   .glass-card {
-    @apply bg-white/80 dark:bg-dark-700/60 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-2xl shadow-card;
+    @apply bg-brand-50 dark:bg-dark-700/60 backdrop-blur-md border border-white/20 dark:border-white/5 rounded-2xl;
   }
   .btn-primary {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold transition-all duration-300 hover:shadow-glow hover:-translate-y-0.5 active:translate-y-0;

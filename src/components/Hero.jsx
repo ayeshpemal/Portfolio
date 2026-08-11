@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Mail, ExternalLink } from "lucide-react";
+import { ArrowDown, Mail, ExternalLink, FileText } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "./shared/SocialIcons";
 import { personalInfo } from "../data/portfolio";
 
@@ -101,6 +101,16 @@ export default function Hero() {
                 View My Work
                 <ArrowDown size={16} />
               </button>
+              <a
+                id="hero-cta-cv"
+                href={personalInfo.cv}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline text-base"
+              >
+                View CV
+                <FileText size={16} />
+              </a>
               <button
                 id="hero-cta-contact"
                 onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
@@ -144,16 +154,6 @@ export default function Hero() {
               >
                 <Mail size={20} />
               </a>
-              <a
-                href={`https://${personalInfo.portfolio}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="hero-portfolio"
-                aria-label="Portfolio"
-                className="p-2.5 rounded-xl bg-slate-100 dark:bg-dark-600 text-slate-600 dark:text-slate-300 hover:text-brand-500 hover:bg-brand-500/10 transition-all duration-200"
-              >
-                <ExternalLink size={20} />
-              </a>
             </motion.div>
           </motion.div>
 
@@ -174,11 +174,11 @@ export default function Hero() {
               <div className="absolute inset-4 rounded-full border border-accent-500/15 animate-spin-slow" style={{ animationDirection: "reverse" }} />
               {/* Main avatar circle */}
               <div className="absolute inset-8 rounded-full bg-gradient-to-br from-brand-600 to-accent-600 shadow-glow flex items-center justify-center">
-                <span className="font-display font-bold text-7xl text-white/90 select-none">A</span>
+                <span className="font-display font-bold text-7xl text-white/90 select-none"><img className="rounded-full" src="pp.jpg"></img></span>
               </div>
               {/* Floating badge: React */}
               <motion.div
-                className="absolute -top-2 -right-2 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-brand-600 dark:text-brand-400 border border-brand-500/20"
+                className="absolute top-10 -right-5 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-brand-600 dark:text-brand-400 border border-brand-500/20"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 0 }}
               >
@@ -186,7 +186,7 @@ export default function Hero() {
               </motion.div>
               {/* Floating badge: NestJS */}
               <motion.div
-                className="absolute -bottom-2 -left-4 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-red-500 border border-red-500/20"
+                className="absolute -bottom-2 left-4 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-red-500 border border-red-500/20"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 1.2 }}
               >
@@ -194,11 +194,25 @@ export default function Hero() {
               </motion.div>
               {/* Floating badge: AWS */}
               <motion.div
-                className="absolute top-1/2 -right-10 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-orange-500 border border-orange-500/20"
+                className="absolute top-3/4 -right-10 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-orange-500 border border-orange-500/20"
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}
               >
                 AWS ☁️
+              </motion.div>
+              {/* Floating badge: Supabase */}
+              <motion.div
+              className="absolute -top-0 left-2 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-green-500 border border-green-500/20"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}>
+                Supabase⚡
+              </motion.div>
+              {/* Floating badge: PostgreSQL */}
+              <motion.div
+              className="absolute top-1/2 -left-20 bg-white dark:bg-dark-600 rounded-xl px-3 py-1.5 shadow-card text-xs font-semibold text-blue-500 border border-blue-500/20"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}>
+                PostgreSQL 🐘
               </motion.div>
             </motion.div>
           </motion.div>

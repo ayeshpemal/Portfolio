@@ -6,9 +6,10 @@ export const personalInfo = {
   email: "ayeshapemal@gmail.com",
   phone: "+94767837154",
   location: "Weeraketiya, Sri Lanka",
-  github: "https://github.com/ayesha-pemal",
-  linkedin: "https://linkedin.com/in/ayeshpemal",
+  github: "https://github.com/ayeshpemal",
+  linkedin: "https://linkedin.com/in/ayesha-pemal",
   portfolio: "https://ayesha.csbodima.lk",
+  cv: "https://flowcv.com/resume/170gk2nuep",
 };
 
 export const experience = [
@@ -57,6 +58,7 @@ export const projects = {
         "JWT",
       ],
       color: "from-violet-500 to-indigo-600",
+      preview: "uniearn_preview.webp",
     },
     {
       name: "ZOOKEEPER-Pro",
@@ -66,6 +68,7 @@ export const projects = {
         "A standalone desktop application for animal identification. Integrated the Imagga API for intelligent image recognition, allowing users to upload an animal image for instant and accurate species identification.",
       stack: ["Java", "JavaFX", "MongoDB", "Imagga API"],
       color: "from-emerald-500 to-teal-600",
+      preview: "zookeeper_preview.webp",
     },
   ],
   additional: [
@@ -73,7 +76,7 @@ export const projects = {
     { name: "Interim Search", duration: "Sep 2025 – Oct 2025" },
     { name: "BeVisioneers", duration: "Oct 2025 – Dec 2025" },
     { name: "Bevisioneer Dev", duration: "Dec 2025 – Jan 2026" },
-    { name: "Linkify", duration: "Jan 2026 – Present" },
+    { name: "Linkify", duration: "Jan 2026 – June 2026" },
   ],
 };
 
@@ -87,15 +90,8 @@ export const education = [
 ];
 
 export const skills = {
-  Languages: ["JavaScript / TypeScript", "Java", "Python", "SQL", "HTML", "CSS"],
-  "Frameworks & Tech": [
-    "React",
-    "NestJS",
-    "Next.js",
-    "Express.js",
-    "Spring Boot",
-    "Tailwind CSS",
-  ],
+  Languages: ["JavaScript / TypeScript", "Java", "SQL", "HTML", "CSS"],
+  "Frameworks & Tech": ["React", "NestJS", "Next.js", "Express.js", "Spring Boot", "Tailwind CSS"],
   Databases: ["PostgreSQL", "MySQL", "MongoDB"],
   "Cloud & DevOps": ["AWS EC2", "Docker", "GitHub Actions", "CI/CD Pipelines"],
 };

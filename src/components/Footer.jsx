@@ -12,10 +12,11 @@ export default function Footer() {
           {/* Brand */}
           <div className="text-center sm:text-left">
             <p className="font-display font-bold text-lg text-slate-900 dark:text-white">
-              <span className="text-brand-500">A</span>yesha<span className="text-brand-500">.</span>
+              <span className="text-brand-500">A</span>yesha
+              <span className="text-brand-500">.</span>
             </p>
             <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
-              Software Engineer · Sri Lanka
+              {personalInfo.title} · {personalInfo.location}
             </p>
           </div>
 
@@ -27,8 +28,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               id="footer-github"
               aria-label="GitHub"
-              className="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-brand-500/10 transition-all duration-200"
-            >
+              className="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-brand-500/10 transition-all duration-200">
               <GitHubIcon size={18} />
             </a>
             <a
@@ -37,16 +37,14 @@ export default function Footer() {
               rel="noopener noreferrer"
               id="footer-linkedin"
               aria-label="LinkedIn"
-              className="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-brand-500/10 transition-all duration-200"
-            >
+              className="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-brand-500/10 transition-all duration-200">
               <LinkedInIcon size={18} />
             </a>
             <a
               href={`mailto:${personalInfo.email}`}
               id="footer-email"
               aria-label="Email"
-              className="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-brand-500/10 transition-all duration-200"
-            >
+              className="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:text-brand-500 hover:bg-brand-500/10 transition-all duration-200">
               <Mail size={18} />
             </a>
           </div>

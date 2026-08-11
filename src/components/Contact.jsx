@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, ExternalLink, Send, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { GitHubIcon, LinkedInIcon } from "./shared/SocialIcons";
 import SectionWrapper from "./shared/SectionWrapper";
 import { personalInfo } from "../data/portfolio";
@@ -17,12 +17,6 @@ const socials = [
     href: personalInfo.linkedin,
     icon: LinkedInIcon,
     color: "hover:text-white hover:bg-blue-600",
-  },
-  {
-    label: "Portfolio",
-    href: `https://${personalInfo.portfolio}`,
-    icon: ExternalLink,
-    color: "hover:text-white hover:bg-brand-600",
   },
 ];
 
