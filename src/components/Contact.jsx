@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { GitHubIcon, LinkedInIcon } from "./shared/SocialIcons";
 import SectionWrapper from "./shared/SectionWrapper";
 import { personalInfo } from "../data/portfolio";
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const socials = [
   {
@@ -23,6 +28,8 @@ const socials = [
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [sendError, setSendError] = useState(null);
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -34,20 +41,49 @@ export default function Contact() {
     return e;
   };
 
-  const handleSubmit = (ev) => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
     const e = validate();
-    if (Object.keys(e).length) { setErrors(e); return; }
+    if (Object.keys(e).length) {
+      setErrors(e);
+      return;
+    }
     setErrors({});
-    // In a real implementation this would call an API / EmailJS
-    setSubmitted(true);
+    setSendError(null);
+
+    // Guard: ensure EmailJS is configured before attempting to send
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setSendError(
+        "Contact form is not configured yet. Please email me directly at " + personalInfo.email
+      );
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name,
+          from_email: form.email,
+          message: form.message,
+          to_name: "Ayesha",
+          reply_to: form.email,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      setSubmitted(true);
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setSendError("Oops! Something went wrong. Please email me directly at " + personalInfo.email);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <SectionWrapper
-      id="contact"
-      className="py-24 px-4 sm:px-6 max-w-6xl mx-auto"
-    >
+    <SectionWrapper id="contact" className="py-24 px-4 sm:px-6 max-w-6xl mx-auto">
       <div className="text-center mb-16">
         <p className="section-subheading">Get In Touch</p>
         <h2 className="section-heading">Contact Me</h2>
@@ -60,43 +96,50 @@ export default function Contact() {
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
+          transition={{ duration: 0.6 }}>
           <h3 className="font-display font-bold text-2xl text-slate-900 dark:text-white mb-4">
             Let's work together
           </h3>
           <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
-            I'm currently open to internship and full-time roles. Whether you
-            have a project in mind or just want to say hi — feel free to reach
-            out. I'll do my best to get back to you promptly.
+            I'm currently open to internship and full-time roles. Whether you have a project in mind
+            or just want to say hi — feel free to reach out. I'll do my best to get back to you
+            promptly.
           </p>
 
           <div className="space-y-4 mb-8">
             <a
               href={`mailto:${personalInfo.email}`}
               id="contact-email-link"
-              className="flex items-center gap-4 p-4 glass-card hover:border-brand-500/30 transition-all duration-200 group"
-            >
+              className="flex items-center gap-4 p-4 glass-card hover:border-brand-500/30 transition-all duration-200 group">
               <div className="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-500 transition-colors duration-200">
-                <Mail size={18} className="text-brand-500 group-hover:text-white transition-colors duration-200" />
+                <Mail
+                  size={18}
+                  className="text-brand-500 group-hover:text-white transition-colors duration-200"
+                />
               </div>
               <div>
                 <p className="text-xs text-slate-400 mb-0.5">Email</p>
-                <p className="text-sm font-medium text-slate-800 dark:text-slate-200">{personalInfo.email}</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-200">
+                  {personalInfo.email}
+                </p>
               </div>
             </a>
 
             <a
               href={`tel:${personalInfo.phone}`}
               id="contact-phone-link"
-              className="flex items-center gap-4 p-4 glass-card hover:border-brand-500/30 transition-all duration-200 group"
-            >
+              className="flex items-center gap-4 p-4 glass-card hover:border-brand-500/30 transition-all duration-200 group">
               <div className="w-10 h-10 rounded-xl bg-brand-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-500 transition-colors duration-200">
-                <Phone size={18} className="text-brand-500 group-hover:text-white transition-colors duration-200" />
+                <Phone
+                  size={18}
+                  className="text-brand-500 group-hover:text-white transition-colors duration-200"
+                />
               </div>
               <div>
                 <p className="text-xs text-slate-400 mb-0.5">Phone</p>
-                <p className="text-sm font-medium text-slate-800 dark:text-slate-200">{personalInfo.phone}</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-200">
+                  {personalInfo.phone}
+                </p>
               </div>
             </a>
 
@@ -106,7 +149,9 @@ export default function Contact() {
               </div>
               <div>
                 <p className="text-xs text-slate-400 mb-0.5">Location</p>
-                <p className="text-sm font-medium text-slate-800 dark:text-slate-200">{personalInfo.location}</p>
+                <p className="text-sm font-medium text-slate-800 dark:text-slate-200">
+                  {personalInfo.location}
+                </p>
               </div>
             </div>
           </div>
@@ -121,8 +166,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 id={`contact-social-${label.toLowerCase()}`}
                 aria-label={label}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl glass-card text-slate-600 dark:text-slate-300 text-sm font-medium transition-all duration-200 ${color}`}
-              >
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl glass-card text-slate-600 dark:text-slate-300 text-sm font-medium transition-all duration-200 ${color}`}>
                 <Icon size={16} />
                 {label}
               </a>
@@ -135,19 +179,16 @@ export default function Contact() {
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
+          transition={{ duration: 0.6, delay: 0.1 }}>
           {submitted ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="glass-card p-10 flex flex-col items-center justify-center text-center h-full min-h-[340px]"
-            >
+              className="glass-card p-10 flex flex-col items-center justify-center text-center h-full min-h-[340px]">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ type: "spring", delay: 0.1 }}
-              >
+                transition={{ type: "spring", delay: 0.1 }}>
                 <CheckCircle2 size={56} className="text-emerald-500 mb-4" />
               </motion.div>
               <h3 className="font-display font-bold text-xl text-slate-900 dark:text-white mb-2">
@@ -162,11 +203,12 @@ export default function Contact() {
               onSubmit={handleSubmit}
               noValidate
               id="contact-form"
-              className="glass-card p-6 sm:p-8 space-y-5"
-            >
+              className="glass-card p-6 sm:p-8 space-y-5">
               {/* Name */}
               <div>
-                <label htmlFor="contact-name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                <label
+                  htmlFor="contact-name"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                   Full Name
                 </label>
                 <input
@@ -184,7 +226,9 @@ export default function Contact() {
 
               {/* Email */}
               <div>
-                <label htmlFor="contact-email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                <label
+                  htmlFor="contact-email"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                   Email Address
                 </label>
                 <input
@@ -202,7 +246,9 @@ export default function Contact() {
 
               {/* Message */}
               <div>
-                <label htmlFor="contact-message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                <label
+                  htmlFor="contact-message"
+                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
                   Message
                 </label>
                 <textarea
@@ -218,13 +264,31 @@ export default function Contact() {
                 {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message}</p>}
               </div>
 
+              {/* Error banner */}
+              {sendError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-start gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-500 text-sm">
+                  <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
+                  <span>{sendError}</span>
+                </motion.div>
+              )}
+
               <button
                 type="submit"
                 id="contact-submit"
-                className="btn-primary w-full justify-center"
-              >
-                <Send size={16} />
-                Send Message
+                disabled={loading}
+                className="btn-primary w-full justify-center disabled:opacity-60 disabled:cursor-not-allowed">
+                {loading ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" /> Sending…
+                  </>
+                ) : (
+                  <>
+                    <Send size={16} /> Send Message
+                  </>
+                )}
               </button>
             </form>
           )}

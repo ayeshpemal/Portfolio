@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO -->
@@ -45,51 +45,56 @@
 
     <!-- JSON-LD Structured Data (Person + WebSite) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://ayesha.csbodima.lk/#person",
-          "name": "Ayesha Senarath",
-          "jobTitle": "Software Engineer",
-          "description": "Software Engineer specializing in scalable web applications, React, NestJS, Supabase, and cloud-native deployments.",
-          "url": "https://ayesha.csbodima.lk",
-          "email": "ayeshapemal@gmail.com",
-          "telephone": "+94767837154",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Weeraketiya",
-            "addressCountry": "LK"
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://ayesha.csbodima.lk/#person",
+            "name": "Ayesha Senarath",
+            "jobTitle": "Software Engineer",
+            "description": "Software Engineer specializing in scalable web applications, React, NestJS, Supabase, and cloud-native deployments.",
+            "url": "https://ayesha.csbodima.lk",
+            "email": "ayeshapemal@gmail.com",
+            "telephone": "+94767837154",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Weeraketiya",
+              "addressCountry": "LK"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "University of Ruhuna"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Fcode Labs (Pvt) Ltd."
+            },
+            "sameAs": ["https://github.com/ayeshpemal", "https://linkedin.com/in/ayesha-pemal"],
+            "knowsAbout": [
+              "React",
+              "NestJS",
+              "Next.js",
+              "TypeScript",
+              "JavaScript",
+              "Supabase",
+              "PostgreSQL",
+              "AWS EC2",
+              "Docker",
+              "Spring Boot"
+            ],
+            "image": "https://ayesha.csbodima.lk/pp.jpg"
           },
-          "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "University of Ruhuna"
-          },
-          "worksFor": {
-            "@type": "Organization",
-            "name": "Fcode Labs (Pvt) Ltd."
-          },
-          "sameAs": [
-            "https://github.com/ayeshpemal",
-            "https://linkedin.com/in/ayesha-pemal"
-          ],
-          "knowsAbout": [
-            "React", "NestJS", "Next.js", "TypeScript", "JavaScript",
-            "Supabase", "PostgreSQL", "AWS EC2", "Docker", "Spring Boot"
-          ],
-          "image": "https://ayesha.csbodima.lk/pp.jpg"
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://ayesha.csbodima.lk/#website",
-          "url": "https://ayesha.csbodima.lk",
-          "name": "Ayesha Senarath — Software Engineer",
-          "description": "Personal portfolio of Ayesha Senarath, a Software Engineer based in Sri Lanka.",
-          "author": { "@id": "https://ayesha.csbodima.lk/#person" }
-        }
-      ]
-    }
+          {
+            "@type": "WebSite",
+            "@id": "https://ayesha.csbodima.lk/#website",
+            "url": "https://ayesha.csbodima.lk",
+            "name": "Ayesha Senarath — Software Engineer",
+            "description": "Personal portfolio of Ayesha Senarath, a Software Engineer based in Sri Lanka.",
+            "author": { "@id": "https://ayesha.csbodima.lk/#person" }
+          }
+        ]
+      }
     </script>
 
     <!-- Preconnect for Google Fonts (loaded in CSS) -->
