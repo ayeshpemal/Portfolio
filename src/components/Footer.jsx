@@ -52,9 +52,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-slate-200/50 dark:border-white/5 text-center">
           <p className="text-xs text-slate-400 dark:text-slate-500 flex items-center justify-center gap-1.5">
-            © {year} Ayesha Senarath · Built with
-            <Heart size={11} className="text-rose-500 fill-rose-500 inline" />
-            using React & Tailwind CSS
+            © {year} Ayesha Senarath
           </p>
         </div>
       </div>
