@@ -140,7 +140,7 @@ export default function Projects() {
       </div>
 
       {/* Additional Projects */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -172,7 +172,7 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
-      </motion.div>
+      </motion.div> */}
     </SectionWrapper>
   );
 }
