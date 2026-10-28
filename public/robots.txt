@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ayesha.csbodima.lk/sitemap.xml
+Sitemap: https://portfolio.ayesha.live/sitemap.xml

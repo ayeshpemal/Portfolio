@@ -8,7 +8,7 @@ export const personalInfo = {
   location: "Weeraketiya, Sri Lanka",
   github: "https://github.com/ayeshpemal",
   linkedin: "https://linkedin.com/in/ayesha-pemal",
-  portfolio: "https://ayesha.csbodima.lk",
+  portfolio: "https://portfolio.ayesha.live",
   cv: "https://flowcv.com/resume/170gk2nuep",
 };
 
