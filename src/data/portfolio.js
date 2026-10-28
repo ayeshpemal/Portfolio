@@ -42,6 +42,25 @@ export const experience = [
 export const projects = {
   featured: [
     {
+      name: "CSB QRHub",
+      type: "Personal Project — CSB Developments",
+      duration: "Sep 2026 - Present",
+      description:
+        "A full-stack QR code and shareable landing-page service. Supports anonymous static QR generation with rich customisation, dynamic QR codes with scan analytics, and hosted public landing pages (multi-link, vCard, business profile, surprise post). Built with React 18, Express.js, MySQL, Firebase Auth, and ImageKit CDN.",
+      stack: [
+        "React 18",
+        "Express.js",
+        "MySQL",
+        "Firebase Auth",
+        "ImageKit CDN",
+        "qr-code-styling",
+        "JWT",
+        "Tailwind CSS",
+      ],
+      color: "from-amber-500 to-orange-600",
+      preview: "csb_qr_hub_preview.webp",
+    },
+    {
       name: "UniEarn",
       type: "Group Project — University of Ruhuna",
       duration: "Nov 2024 – Apr 2025",
